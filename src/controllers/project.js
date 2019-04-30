@@ -58,7 +58,7 @@ exports.createProject = async (req, res, next) => {
     }
 
     const title = req.body.title;
-    const content = req.body.link;
+    const content = req.body.content;
     const createdBy = req.userId;
 
     const project = new Project({
