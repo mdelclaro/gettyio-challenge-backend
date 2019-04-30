@@ -9,7 +9,7 @@ exports.createUser = async (req, res, next) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      error = errorHandler.createError("Validation Failed.", 422, errors);
+      error = errorHandler.createError("Invalid parameters.", 422, errors);
       throw error;
     }
 

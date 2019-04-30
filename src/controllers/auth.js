@@ -15,7 +15,11 @@ exports.login = async (req, res, next) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      error.errorHandler.createError("Validation failed.", 422, errors);
+      const error = errorHandler.createError(
+        "Invalid parameters.",
+        422,
+        errors
+      );
       throw error;
     }
 
@@ -77,7 +81,7 @@ exports.refreshToken = async (req, res, next) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      error.errorHandler.createError("Validation failed.", 422, errors);
+      error.errorHandler.createError("Invalid parameters.", 422, errors);
       throw error;
     }
 
