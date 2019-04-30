@@ -8,6 +8,7 @@ const { mongodb_url } = require("./src/utils/config");
 
 const userRoutes = require("./src/routes/user");
 const authRoutes = require("./src/routes/auth");
+const projectRoutes = require("./src/routes/project");
 
 const app = express();
 
@@ -17,7 +18,8 @@ app.use(bodyParser.json());
 
 // Routes
 app.use("/v1/signup", userRoutes);
-app.use("/v1/signin", authRoutes);
+app.use("/v1/auth", authRoutes);
+app.use("/v1/projects", projectRoutes);
 
 // Error handling
 app.use((error, req, res, next) => {

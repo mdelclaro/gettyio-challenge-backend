@@ -4,18 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --timeout 5000",
+    "dev": "nodemon app.js"
   },
   "author": "Matheus Del Claro",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^3.0.6",
+    "chai": "^4.2.0",
     "cors": "^2.8.5",
     "dotenv": "^7.0.0",
     "dotenv-safe": "^6.1.0",
     "express": "^4.16.4",
     "express-validator": "^5.3.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.5.4"
+    "mocha": "^6.1.4",
+    "mongoose": "^5.5.4",
+    "sinon": "^7.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
   }
 }

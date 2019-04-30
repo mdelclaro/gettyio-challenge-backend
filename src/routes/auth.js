@@ -5,9 +5,9 @@ const authController = require("../controllers/auth");
 
 const router = express.Router();
 
-// POST /auth
+// POST auth/
 router.post(
-  "/",
+  "/signin",
   [
     body("email")
       .isEmail()

@@ -5,7 +5,7 @@ const userController = require("../controllers/user");
 
 const router = express.Router();
 
-// POST /user/signup
+// POST /signup
 router.post("/", [
   body("firstName")
     .not()

@@ -36,7 +36,8 @@ exports.login = async (req, res, next) => {
     const token = await jwt.sign(
       {
         username: `${user.firstName} ${user.lastName}`,
-        email: user.email
+        email: user.email,
+        userId: user._id.toString()
       },
       privateKey,
       { expiresIn: "1h", algorithm: "RS256" }
@@ -44,7 +45,8 @@ exports.login = async (req, res, next) => {
     const refreshToken = await jwt.sign(
       {
         username: `${user.firstName} ${user.lastName}`,
-        email: user.email
+        email: user.email,
+        userId: user._id.toString()
       },
       refreshTokenPrivateKey,
       { algorithm: "RS256" }
@@ -97,7 +99,8 @@ exports.refreshToken = async (req, res, next) => {
     const token = await jwt.sign(
       {
         username: `${user.firstName} ${user.lastName}`,
-        email: user.email
+        email: user.email,
+        userId: user._id.toString()
       },
       privateKey,
       { expiresIn: "1h", algorithm: "RS256" }
