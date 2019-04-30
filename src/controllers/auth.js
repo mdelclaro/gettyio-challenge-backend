@@ -33,11 +33,14 @@ exports.login = async (req, res, next) => {
       const error = errorHandler.createError("Invalid password.", 401);
       throw error;
     }
+
+    const userId = user._id.toString();
+
     const token = await jwt.sign(
       {
         username: `${user.firstName} ${user.lastName}`,
         email: user.email,
-        userId: user._id.toString()
+        userId
       },
       privateKey,
       { expiresIn: "1h", algorithm: "RS256" }
@@ -46,7 +49,7 @@ exports.login = async (req, res, next) => {
       {
         username: `${user.firstName} ${user.lastName}`,
         email: user.email,
-        userId: user._id.toString()
+        userId
       },
       refreshTokenPrivateKey,
       { algorithm: "RS256" }
@@ -57,7 +60,8 @@ exports.login = async (req, res, next) => {
     res.status(200).json({
       token,
       refreshToken,
-      expiryDate: expiryDate.toString()
+      expiryDate: expiryDate.toString(),
+      userId
     });
     return; // return the promise for testing
   } catch (err) {
@@ -91,16 +95,19 @@ exports.refreshToken = async (req, res, next) => {
 
     const email = decodedToken.email;
     const user = await User.findOne({ email });
+
     if (!user) {
       const error = errorHandler.createError("Invalid Token.", 500);
       throw error;
     }
 
+    const userId = user._id.toString();
+
     const token = await jwt.sign(
       {
         username: `${user.firstName} ${user.lastName}`,
         email: user.email,
-        userId: user._id.toString()
+        userId
       },
       privateKey,
       { expiresIn: "1h", algorithm: "RS256" }

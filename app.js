@@ -37,7 +37,7 @@ mongoose.set("useFindAndModify", false);
 mongoose
   .connect(mongodb_url, { useNewUrlParser: true })
   .then(() => {
-    port = process.env.PORT || 3000;
+    port = process.env.PORT || 8080;
     app.listen(port);
     console.log("Listening on port " + port);
   })

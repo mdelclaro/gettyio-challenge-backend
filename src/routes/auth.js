@@ -5,7 +5,7 @@ const authController = require("../controllers/auth");
 
 const router = express.Router();
 
-// POST auth/
+// POST /auth/signin
 router.post(
   "/signin",
   [

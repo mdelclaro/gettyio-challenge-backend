@@ -9,7 +9,7 @@ const router = express.Router();
 router.get("/", projectController.getProjects);
 
 // GET /projects/:idProject
-router.get("/:idProject", auth, projectController.getProject);
+router.get("/:idProject", projectController.getProject);
 
 // POST /projects
 router.post(
@@ -22,7 +22,7 @@ router.post(
       .trim()
       .isLength({ min: 10 })
   ],
-  auth,
+  // auth,
   projectController.createProject
 );
 

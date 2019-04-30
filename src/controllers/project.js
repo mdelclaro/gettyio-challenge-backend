@@ -7,7 +7,7 @@ const Project = require("../models/project");
 // GET /projects
 exports.getProjects = async (req, res, next) => {
   try {
-    const projects = await Project.find();
+    const projects = await Project.find().populate("createdBy");
     if (!projects) {
       const error = errorHandler.createError("No project found.", 404);
       throw error;
@@ -32,7 +32,7 @@ exports.getProject = async (req, res, next) => {
       const error = errorHandler.createError("Invalid ID.", 422);
       throw error;
     }
-    const project = await Project.findById(idProject);
+    const project = await Project.findById(idProject).populate("createdBy");
     if (!project) {
       error = errorHandler.createError("No project found.", 404);
       throw error;
@@ -59,7 +59,8 @@ exports.createProject = async (req, res, next) => {
 
     const title = req.body.title;
     const content = req.body.content;
-    const createdBy = req.userId;
+    const createdBy = req.body.createdBy;
+    // const createdBy = req.userId;
 
     const project = new Project({
       title,
