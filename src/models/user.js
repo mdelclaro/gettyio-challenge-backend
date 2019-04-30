@@ -18,7 +18,14 @@ const userSchema = new Schema({
     type: String,
     required: true,
     select: false
-  }
+  },
+  projects: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Project",
+      required: false
+    }
+  ]
 });
 
 module.exports = mongoose.model("User", userSchema);

@@ -6,6 +6,9 @@ require("dotenv-safe").config();
 
 const { mongodb_url } = require("./src/utils/config");
 
+const userRoutes = require("./src/routes/user");
+const authRoutes = require("./src/routes/auth");
+
 const app = express();
 
 app.use(cors());
@@ -13,6 +16,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Routes
+app.use("/v1/signup", userRoutes);
+app.use("/v1/signin", authRoutes);
 
 // Error handling
 app.use((error, req, res, next) => {
