@@ -4,6 +4,8 @@ This API has all the basic CRUD operations for managing "projects" with MongoDB 
 
 All the routes are authenticated by using JWT tokens, so the API also creates users.
 
+Before anything, run `npm install` to install the modules.
+
 ### Running:
 ``` 
 $ npm install 
