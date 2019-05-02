@@ -35,7 +35,7 @@ app.use((req, res) => {
 
 mongoose.set("useFindAndModify", false);
 mongoose
-  .connect(test ? mongodb_url_test : mongodb_url, { useNewUrlParser: true })
+  .connect(test ? mongodb_url : mongodb_url_testrl, { useNewUrlParser: true })
   .then(() => {
     port = process.env.PORT || 8080;
     app.listen(port);
