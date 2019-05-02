@@ -10,6 +10,7 @@ $ npm install
 $ npm start
 ```
 ### Testing:
+On the .env file change "TEST" to true, and then:
 ```
 $ npm test
 ```
