@@ -133,7 +133,7 @@ describe("Auth controller", () => {
       });
     });
 
-    it("should throw an error with code 500 if JWT is invalid", done => {
+    it("should throw an error with code 401 if JWT is invalid", done => {
       _stub = sinon.stub(jwt, "verify").throws();
 
       const req = {
@@ -144,7 +144,7 @@ describe("Auth controller", () => {
 
       AuthController.refreshToken(req, {}, () => {}).then(res => {
         expect(res).to.be.an("error");
-        expect(res).to.have.property("statusCode", 500);
+        expect(res).to.have.property("statusCode", 401);
         done();
       });
     });

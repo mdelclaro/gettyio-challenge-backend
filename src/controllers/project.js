@@ -8,13 +8,14 @@ const Project = require("../models/project");
 exports.getProjects = async (req, res, next) => {
   try {
     const clientId = req.userId;
-    const projects = await Project.find({ createdBy: clientId }).populate(
-      "createdBy"
-    );
-    if (!projects) {
+    const projects = await Project.find({
+      createdBy: clientId
+    }).populate("createdBy");
+    if (!projects || projects.length <= 0) {
       const error = errorHandler.createError("No project found.", 404);
       throw error;
     }
+
     res.status(200).json(projects);
     return;
   } catch (err) {
@@ -40,6 +41,7 @@ exports.getProject = async (req, res, next) => {
       error = errorHandler.createError("No project found.", 404);
       throw error;
     }
+
     res.status(200).json(project);
     return;
   } catch (err) {
@@ -66,8 +68,8 @@ exports.createProject = async (req, res, next) => {
 
     const title = req.body.title;
     const content = req.body.content;
-    const createdBy = req.body.createdBy;
-    // const createdBy = req.userId;
+    // const createdBy = req.body.createdBy;
+    const createdBy = req.userId;
 
     const project = new Project({
       title,
