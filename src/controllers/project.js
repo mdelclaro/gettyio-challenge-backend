@@ -31,6 +31,7 @@ exports.getProjects = async (req, res, next) => {
 exports.getProject = async (req, res, next) => {
   try {
     const idProject = req.params.idProject;
+    const idUser = req.userId;
 
     if (!ObjectId.isValid(idProject)) {
       const error = errorHandler.createError("Invalid ID.", 422);
@@ -39,6 +40,13 @@ exports.getProject = async (req, res, next) => {
     const project = await Project.findById(idProject).populate("createdBy");
     if (!project) {
       error = errorHandler.createError("No project found.", 404);
+      throw error;
+    }
+
+    const createdBy = project.createdBy._id.toString();
+
+    if (createdBy !== idUser) {
+      const error = errorHandler.createError("Not authorized.", 401);
       throw error;
     }
 
