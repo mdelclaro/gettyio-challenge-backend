@@ -68,6 +68,10 @@ describe("User controller", () => {
       .then(() => {
         return mongoose.disconnect();
       })
-      .then(() => done());
+      .then(() => done())
+      .catch(err => {
+        console.log(err);
+        done();
+      });
   });
 });

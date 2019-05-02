@@ -111,7 +111,12 @@ exports.updateProject = async (req, res, next) => {
     const project = await Project.findById(idProject);
 
     if (!project) {
-      error = errorHandler.createError("No project found.", 404);
+      const error = errorHandler.createError("No project found.", 404);
+      throw error;
+    }
+
+    if (project.createdBy.toString() !== req.userId) {
+      const error = errorHandler.createError("Not authorized.", 401);
       throw error;
     }
 
@@ -133,19 +138,28 @@ exports.deleteProject = async (req, res, next) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      error = errorHandler.createError("Invalid parameters.", 422, errors);
+      const error = errorHandler.createError(
+        "Invalid parameters.",
+        422,
+        errors
+      );
       throw error;
     }
 
     const idProject = req.params.idProject;
     if (!ObjectId.isValid(idProject)) {
-      error = errorHandler.createError("Invalid ID.", 422);
+      const error = errorHandler.createError("Invalid ID.", 422);
       throw error;
     }
 
     const project = await Project.findById(idProject);
     if (!project) {
-      error = errorHandler.createError("Project not found.", 404);
+      const error = errorHandler.createError("Project not found.", 404);
+      throw error;
+    }
+
+    if (project.createdBy.toString() !== req.userId) {
+      const error = errorHandler.createError("Not authorized.", 401);
       throw error;
     }
 

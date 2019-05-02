@@ -9,7 +9,11 @@ exports.createUser = async (req, res, next) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      error = errorHandler.createError("Invalid parameters.", 422, errors);
+      const error = errorHandler.createError(
+        "Invalid parameters.",
+        422,
+        errors
+      );
       throw error;
     }
 
@@ -20,7 +24,7 @@ exports.createUser = async (req, res, next) => {
 
     const hasUser = await User.findOne({ email });
     if (hasUser) {
-      error = errorHandler.createError("Email already taken.", 422);
+      const error = errorHandler.createError("Email already taken.", 422);
       throw error;
     }
 

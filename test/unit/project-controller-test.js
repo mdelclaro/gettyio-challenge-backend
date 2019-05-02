@@ -57,9 +57,9 @@ describe("Project Controller", () => {
       };
 
       ProjectController.getProjects(req, res, () => {}).then(() => {
-        // expect(res).to.be.an("object");
-        // expect(res).to.have.property("projects");
-        // expect(res.statusCode).to.be.equal(200);
+        expect(res).to.be.an("object");
+        expect(res).to.have.property("projects");
+        expect(res.statusCode).to.be.equal(200);
         done();
       });
     });
@@ -149,7 +149,8 @@ describe("Project Controller", () => {
         },
         params: {
           idProject: "5cacaa286674d03898d9d0f1"
-        }
+        },
+        userId: "5cacaa286674d03898d9d0f1"
       };
 
       const res = {
@@ -183,7 +184,8 @@ describe("Project Controller", () => {
       const req = {
         params: {
           idProject: "5cacaa286674d03898d9d0f1"
-        }
+        },
+        userId: "5cacaa286674d03898d9d0f1"
       };
 
       const res = {

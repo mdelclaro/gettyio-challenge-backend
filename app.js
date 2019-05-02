@@ -4,7 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv-safe").config();
 
-const { mongodb_url } = require("./src/utils/config");
+const { mongodb_url, mongodb_url_test, test } = require("./src/utils/config");
 
 const userRoutes = require("./src/routes/user");
 const authRoutes = require("./src/routes/auth");
@@ -35,12 +35,13 @@ app.use((req, res) => {
 
 mongoose.set("useFindAndModify", false);
 mongoose
-  .connect(mongodb_url, { useNewUrlParser: true })
+  .connect(test ? mongodb_url_test : mongodb_url, { useNewUrlParser: true })
   .then(() => {
     port = process.env.PORT || 8080;
     app.listen(port);
-    console.log("Listening on port " + port);
   })
   .catch(err => {
     console.log("Mongodb error: " + err);
   });
+
+module.exports = app;

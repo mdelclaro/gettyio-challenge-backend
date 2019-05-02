@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --timeout 5000 ./test/**/*.js",
+    "test": "mocha --timeout 5000 --exit ./test/integration/test.js && mocha --timeout 5000 ./test/unit/*.js",
     "dev": "nodemon app.js",
     "start": "node app.js"
   },
@@ -21,9 +21,10 @@
     "mongoose": "^5.5.4"
   },
   "devDependencies": {
-    "nodemon": "^1.18.11",
-    "mocha": "^6.1.4",
     "chai": "^4.2.0",
-    "sinon": "^7.3.2"
+    "mocha": "^6.1.4",
+    "nodemon": "^1.18.11",
+    "sinon": "^7.3.2",
+    "supertest": "^4.0.2"
   }
 }
