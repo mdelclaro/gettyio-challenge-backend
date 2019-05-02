@@ -6,10 +6,10 @@ const auth = require("../middlewares/auth");
 const router = express.Router();
 
 // GET /projects
-router.get("/", projectController.getProjects);
+router.get("/", auth, projectController.getProjects);
 
 // GET /projects/:idProject
-router.get("/:idProject", projectController.getProject);
+router.get("/:idProject", auth, projectController.getProject);
 
 // POST /projects
 router.post(
@@ -22,7 +22,7 @@ router.post(
       .trim()
       .isLength({ min: 10 })
   ],
-  // auth,
+  auth,
   projectController.createProject
 );
 

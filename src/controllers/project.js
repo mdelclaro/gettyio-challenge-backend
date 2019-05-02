@@ -7,7 +7,10 @@ const Project = require("../models/project");
 // GET /projects
 exports.getProjects = async (req, res, next) => {
   try {
-    const projects = await Project.find().populate("createdBy");
+    const clientId = req.userId;
+    const projects = await Project.find({ createdBy: clientId }).populate(
+      "createdBy"
+    );
     if (!projects) {
       const error = errorHandler.createError("No project found.", 404);
       throw error;
