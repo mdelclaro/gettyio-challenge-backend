@@ -3,9 +3,9 @@ const sinon = require("sinon");
 const mongoose = require("mongoose");
 require("dotenv-safe").config();
 
-const Project = require("../src/models/project");
-const ProjectController = require("../src/controllers/project");
-const { mongodb_url_test } = require("../src/utils/config");
+const Project = require("../../src/models/project");
+const ProjectController = require("../../src/controllers/project");
+const { mongodb_url_test } = require("../../src/utils/config");
 
 describe("Project Controller", () => {
   let _stub;

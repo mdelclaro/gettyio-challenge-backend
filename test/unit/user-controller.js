@@ -2,9 +2,9 @@ const expect = require("chai").expect;
 const mongoose = require("mongoose");
 require("dotenv-safe").config();
 
-const { mongodb_url_test } = require("../src/utils/config");
-const User = require("../src/models/user");
-const UserController = require("../src/controllers/user");
+const { mongodb_url_test } = require("../../src/utils/config");
+const User = require("../../src/models/user");
+const UserController = require("../../src/controllers/user");
 
 describe("User controller", () => {
   before(done => {

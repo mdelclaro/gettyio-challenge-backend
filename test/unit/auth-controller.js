@@ -5,9 +5,9 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv-safe").config();
 
-const { mongodb_url_test } = require("../src/utils/config");
-const User = require("../src/models/user");
-const AuthController = require("../src/controllers/auth");
+const { mongodb_url_test } = require("../../src/utils/config");
+const User = require("../../src/models/user");
+const AuthController = require("../../src/controllers/auth");
 
 describe("Auth controller", () => {
   let _stub;
